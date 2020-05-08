@@ -18,10 +18,13 @@ def get_indices_of_item_weights(weights, length, limit):
     # loop over weights arr:
     for num in weights:
         # if a weight in the array == wd[index] these are a pair
-        if num in wd.keys():
-            # get index of num
-            result.append(wd[num])
+        try:
+            if wd[num]:
+                # get index of num
+                result.append(wd[num])
             # return the index of the weight and the key from wd
+        except KeyError:
+            continue
 
     return result
 
@@ -30,3 +33,5 @@ get_indices_of_item_weights([4, 6, 10, 15, 16], 5, 21)
 
 
 # [4, 6, 10, 15, 16]
+
+# weight dict: {17: 0, 15: 1, 11: 2, 6: 3, 5: 4}
